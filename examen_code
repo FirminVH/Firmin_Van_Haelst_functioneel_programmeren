@@ -1,0 +1,159 @@
+import vertalers_dictionary
+
+dict_limburg = vertalers_dictionary.vertalers_Limburg
+dict_antwerpen = vertalers_dictionary.vertalers_Antwerpen
+wachtwoord = 1234
+
+# print(dict_antwerpen)
+# print(dict_limburg)
+
+def functioneel_keuze_menu():
+    print("Bekijk vertalers, kies een provincie of beeindig programma")
+    print("--------------------------------------------------------------------------------------")
+    print("1. Toon alle vertalers")
+    print("2. Toon alle beschikbare vertalers")
+    print("3. Toon beschikbare vertalers voor een taal - geef taal in")
+    print("4. Voeg een vertaler toe")
+    print("5. Verwijder een vertaler")
+    print("6. Voeg een taal aan een vertaler toe")
+    print("7. Reserveer een vertaler")
+    print("8. Geef overzicht vertalers volgens moedertaal - geef moedertaal in")
+    print("9. Ga terug naar hoofdmenu")
+    print("--------------------------------------------------------------------------------------")
+
+
+
+def toon_alle_vertalers(lijst1, lijst2):
+    print()
+    print("Alle vertalers uit Antwerpen:")
+    print("-----------------------------")
+    for i,j in lijst1.items():
+        print(i)
+    print()
+    print("Alle vertalers uit Limburg:")
+    print("-----------------------------")
+    for i, j in lijst2.items():
+        print(i)
+    print()
+
+def toon_vertaler_van_provincie(lijst_tvvp, provincie_tvvp):
+    print()
+    print("Alle vertalers uit provincie "+provincie_tvvp)
+    print("-----------------------------")
+    for i,j in lijst_tvvp.items():
+        print(i+" heeft moedertaal "+j['Moedertaal']+" en is beschikbaar :"+j['Status'])
+        print("Talen die hij/zij kan vertalen zijn :")
+        print(j["Talen"])
+        print()
+    print()
+
+def toon_beschikbaarheid_vertaler(lijst_tbv, provincie_tbv):
+    teller_tbv = 0
+    print()
+    print("Zijn beschikbaar voor vertaling :")
+    for i,j in lijst_tbv.items():
+        if j['Status'] == "ja":
+            teller_tbv = teller_tbv+1
+            print()
+            print(i+" is beschikbaar voor vertaling")
+            print()
+    if teller_tbv == 0:
+        print("Er is niemand beschikbaar voor vertalingen in de provincie "+provincie_tbv)
+
+def toon_vertaaltalen(lijst_tv, provincie_tv):
+    teller_tv = 0
+    print()
+    vertaal_taal = input("Voor welke taal zoek je een vertaler? ").capitalize()
+    for i, j in lijst_tv.items():
+        if vertaal_taal in j['Talen']:
+            print(i+" kan taal "+vertaal_taal+" vertalen")
+            teller_tv = teller_tv+1
+    if teller_tv == 0:
+        print("Er kan niemand taal "+vertaal_taal+" vertalen")
+
+def voeg_vertaler_toe(lijst_vvt, provincie_vvt):
+    print()
+    bevestiging = input("Wens je een vertaler in de provincie "+provincie_vvt+" toe te voegen? ja/nee").lower()
+    if bevestiging == "ja":
+        paswoord = 0
+        while paswoord != wachtwoord:
+            paswoord = input("Geef het paswoord in of breek af, door break te typen").lower()
+            if paswoord == "break":
+                break
+            if not paswoord.isalnum():
+                print("Paswoord moet numeriek zijn")
+            if int(paswoord) == wachtwoord:
+                print("Hier komt procedure voor toevoegen")
+                break
+    else:
+        print("Je gaat niemand toevoegen")
+
+
+
+
+
+def verwijder_vertaler(lijst_vv, provincie_vv):
+    pass
+
+def voeg_taal_aan_vertaler_toe(lijst_vtavt, provincie_vtavt):
+    pass
+
+def reserveer_vertaler(lijst_rv, provincie_rv):
+    pass
+
+def rangschik_moedertaal(lijst_rm, provincie_rm):
+    pass
+
+def vertalers_gebruiken(lijst, provincie):
+    print("Voor de vertalers uit "+provincie+" kies een optie")
+    gebruiken = "Waar"
+    while gebruiken == "Waar":
+        functioneel_keuze_menu()
+        keuze = input("Geef uw keuze in: ")
+        if keuze == "1":
+            toon_vertaler_van_provincie(lijst, provincie)
+        elif keuze == "2":
+            toon_beschikbaarheid_vertaler(lijst, provincie)
+        elif keuze == "3":
+            toon_vertaaltalen(lijst, provincie)
+        elif keuze == "4":
+            voeg_vertaler_toe(lijst, provincie)
+        elif keuze == "5":
+            verwijder_vertaler(lijst, provincie)
+        elif keuze == "6":
+            voeg_taal_aan_vertaler_toe(lijst, provincie)
+        elif keuze == "7":
+            reserveer_vertaler(lijst, provincie)
+        elif keuze == "8":
+            rangschik_moedertaal(lijst, provincie)
+        elif keuze == "9":
+            gebruiken = "niet_waar"
+            print(gebruiken)
+
+
+
+
+
+#afprinten van het keuzemenu
+def provincie_keuze_menu():
+    print("Bekijk vertalers, kies een provincie of beeindig programma")
+    print("--------------------------------------------------------------------------------------")
+    print("1. Toon alle vertalers in systeem met hun provincie")
+    print("2. Kies vertalers uit provincie Antwerpen")
+    print("3. Kies vertalers uit provincie Limburg")
+    print("4. Beindig programma")
+    print("--------------------------------------------------------------------------------------")
+
+
+#Main programma
+while (True):
+    provincie_keuze_menu()
+    keuze = input("Geef uw keuze in: ")
+    if keuze == "1":
+        toon_alle_vertalers(dict_antwerpen, dict_limburg)
+    elif keuze == "2":
+        vertalers_gebruiken(dict_antwerpen, "Antwerpen")
+    elif keuze == "3":
+        vertalers_gebruiken(dict_limburg, "Limburg")
+    elif keuze == "4":
+        break

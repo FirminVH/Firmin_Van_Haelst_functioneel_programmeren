@@ -1,0 +1,11 @@
+vertalers_Antwerpen =   {"Bertha Heinz":
+                        {"Moedertaal": "Nederlands", "Talen": ["Duits", "Italiaans", "Nederlands"], "Status": "ja"},
+                        "Olga Jansen":
+                        {"Moedertaal": "Nederlands", "Talen": ["Pools", "Russisch", "Nederlands"], "Status": "ja"}
+                        }
+
+vertalers_Limburg =     {"Jan Peters":
+                        {"Moedertaal": "Nederlands", "Talen": ["Frans", "Duits", "Spaans", "Nederlands"], "Status": "Nee"},
+                        "Claudio Da Franco":
+                        {"Moedertaal": "Italiaans", "Talen": ["Nederlands", "Italiaans", "Frans"], "Status": "Ja"}
+                         }
